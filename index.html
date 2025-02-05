@@ -22,6 +22,9 @@
                 <button class="tab" data-tab="experience">Experience</button>
                 <button class="tab" data-tab="projects">Projects</button>
                 <button class="tab" data-tab="learning">Learning Goals</button>
+                <button class="tab terminal-btn" id="terminal-btn">
+                    <i data-lucide="terminal"></i>
+                </button>
             </div>
             
             <div class="breadcrumb hidden" id="breadcrumb">
@@ -127,7 +130,23 @@
             </div>
         </div>
     </div>
-
+    <div class="terminal-container" id="terminal-container">
+        <div class="terminal-header">
+            <div class="terminal-controls">
+                <span class="control close"></span>
+                <span class="control minimize"></span>
+                <span class="control maximize"></span>
+            </div>
+            <div class="terminal-title">terminal</div>
+        </div>
+        <div class="terminal-content" id="terminal-content">
+            <div class="terminal-output"></div>
+            <div class="terminal-input-line">
+                <span class="prompt">$</span>
+                <input type="text" class="terminal-input" autofocus>
+            </div>
+        </div>
+    </div>
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
     <script src="main.js"></script>

@@ -2,6 +2,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize Lucide icons first
     lucide.createIcons();
 
+    // Terminal functionality
+    const terminalBtn = document.getElementById('terminal-btn');
+    const terminalContainer = document.getElementById('terminal-container');
+    const terminalInput = document.querySelector('.terminal-input');
+    const terminalOutput = document.querySelector('.terminal-output');
+    const terminalClose = document.querySelector('.control.close');
+    const terminalContent = document.getElementById('terminal-content');
+
     // Theme Toggle
     const themeToggle = document.getElementById('theme-toggle');
     const html = document.documentElement;
@@ -66,12 +74,75 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add click handlers to tabs
     tabs.forEach(tab => {
-        tab.addEventListener('click', () => switchToContent(tab));
+        tab.addEventListener('click', () => {
+            if (!tab.classList.contains('terminal-btn')) {
+                switchToContent(tab);
+            }
+        });
     });
 
     // Add home navigation handlers
     document.querySelector('.back-button').addEventListener('click', goHome);
     document.querySelector('.home-link').addEventListener('click', goHome);
+
+    // Terminal Event Listeners
+    if (terminalBtn && terminalContainer) {
+        // Function to handle terminal closing
+        function closeTerminal() {
+            terminalContainer.classList.remove('active');
+            terminalContainer.classList.add('closing');
+            
+            // Remove closing class after animation completes
+            setTimeout(() => {
+                terminalContainer.classList.remove('closing');
+            }, 400);
+        }
+
+        terminalBtn.addEventListener('click', () => {
+            console.log('Terminal button clicked!');
+            terminalContainer.classList.remove('closing');
+            terminalContainer.classList.add('active');
+            terminalInput.focus();
+        });
+
+        terminalClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeTerminal();
+        });
+
+        terminalInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const command = terminalInput.value.trim();
+                
+                // Add command to output
+                terminalOutput.innerHTML += `<div>$ ${command}</div>`;
+                
+                // Process command
+                if (command === 'ls') {
+                    terminalOutput.innerHTML += '<div style="color: #27c93f">You found the easter egg! 🎉</div>';
+                } else if (command === 'clear') {
+                    terminalOutput.innerHTML = '';
+                } else if (command !== '') {
+                    terminalOutput.innerHTML += '<div style="color: #ff5f56">command not found: ' + command + '</div>';
+                }
+                
+                // Clear input
+                terminalInput.value = '';
+                
+                // Scroll to bottom
+                terminalContent.scrollTop = terminalContent.scrollHeight;
+            }
+        });
+
+        // Close terminal when clicking outside
+        document.addEventListener('click', (e) => {
+            if (terminalContainer.classList.contains('active') && 
+                !terminalContainer.contains(e.target) && 
+                !terminalBtn.contains(e.target)) {
+                closeTerminal();
+            }
+        });
+    }
 
     // Show first tab content initially
     const firstTabId = tabs[0].getAttribute('data-tab');
