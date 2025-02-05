@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>matthew bowers</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <button id="theme-toggle" aria-label="Toggle theme">
+        <div class="icon-container">
+            <i data-lucide="sun" class="theme-icon"></i>
+            <i data-lucide="moon" class="theme-icon hidden"></i>
+        </div>
+    </button>
+    
+    <div class="main-container">
+        <div class="navigation">
+            <div class="tabs" id="tabGroup">
+                <button class="tab" data-tab="about">About</button>
+                <button class="tab" data-tab="experience">Experience</button>
+                <button class="tab" data-tab="projects">Projects</button>
+                <button class="tab" data-tab="learning">Learning Goals</button>
+            </div>
+            
+            <div class="breadcrumb hidden" id="breadcrumb">
+                <span class="back-button">←</span>
+                <span class="home-link">Home</span>
+                <span class="separator">/</span>
+                <span class="current-page"></span>
+            </div>
+        </div>
+        
+        <div class="content-container">
+            <header>
+                <h1>matthew bowers</h1>
+                <div class="subtitle">Cloud Engineer • DevOps • ai/ml</div>
+            </header>
+
+            <div id="about" class="tab-content">
+                <section>
+                    <h2>About Me</h2>
+                    <p>section to do.</p>
+                </section>
+
+                <section>
+                    <h2>Skills</h2>
+                    <div class="skills">
+                        <span class="skill">AWS</span>
+                        <span class="skill">Terraform</span>
+                        <span class="skill">Kubernetes</span>
+                        <span class="skill">Docker</span>
+                        <span class="skill">CI/CD</span>
+                        <span class="skill">Python</span>
+                        <span class="skill">Infrastructure as Code</span>
+                        <span class="skill">Site Reliability Engineering</span>
+                        <span class="skill">add more...</span>
+                    </div>
+                </section>
+            </div>
+
+            <div id="experience" class="tab-content">
+                <section>
+                    <h2>Experience</h2>
+                    <div class="experience-item">
+                        <h3>Cloud / DevOps Engineer</h3>
+                        <div class="period">Company Name • 2020-Present</div>
+                        <ul>
+                            <li>add exp</li>
+                            <li>Designed and maintained Kubernetes clusters for microservices architecture</li>
+                            <li>Automated CI/CD pipelines reducing deployment time by 70%</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item">
+                        <h3>DevOps Engineer</h3>
+                        <div class="period">Previous Company • 2018-2020</div>
+                        <ul>
+                            <li>Managed AWS infrastructure for high-traffic applications</li>
+                            <li>Implemented monitoring and alerting solutions</li>
+                            <li>Developed automated backup and disaster recovery procedures</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+            <div id="projects" class="tab-content">
+                <section>
+                    <h2>Projects</h2>
+                    <div class="project">
+                        <h3>Infrastructure Automation Framework</h3>
+                        <p>Custom Terraform modules for standardized AWS deployment, enabling rapid infrastructure provisioning and ensuring security best practices.</p>
+                        <a href="#">View on GitHub →</a>
+                    </div>
+
+                </section>
+            </div>
+
+            <div id="learning" class="tab-content">
+                <section>
+                    <h2>Learning Goals</h2>
+                    <div class="learning-goal">
+                        <h3>Advanced Kubernetes Concepts</h3>
+                        <p>Text about that stuff</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 75%"></div>
+                        </div>
+                    </div>
+
+                    <div class="learning-goal">
+                        <h3>Service Mesh Architecture</h3>
+                        <p>Implementing Istio for microservices communication</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 60%"></div>
+                        </div>
+                    </div>
+
+                    <div class="learning-goal">
+                        <h3>MLOps Workflows</h3>
+                        <p>Better understanding MLOps and deploying production-ready models.</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 40%"></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
