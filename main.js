@@ -85,6 +85,26 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.back-button').addEventListener('click', goHome);
     document.querySelector('.home-link').addEventListener('click', goHome);
 
+    // Function to handle terminal commands
+    function handleCommand(command) {
+        const terminalOutput = document.querySelector('.terminal-output');
+        switch (command) {
+            case 'ls':
+                terminalOutput.innerHTML += '<div style="color: #27c93f">You found the easter egg! 🎉</div>';
+                break;
+            case 'help':
+                terminalOutput.innerHTML += '<div>Available commands: ls, help, echo [message]</div>';
+                break;
+            default:
+                if (command.startsWith('echo ')) {
+                    const message = command.slice(5);
+                    terminalOutput.innerHTML += `<div>${message}</div>`;
+                } else {
+                    terminalOutput.innerHTML += `<div style="color: #ff5f56">Command not found. Not surprising, right? It's not a full terminal!\nType "help" for a list of commands.</div>`;
+                }
+        }
+    }
+
     // Terminal Event Listeners
     if (terminalBtn && terminalContainer) {
         // Function to handle terminal closing
@@ -117,14 +137,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Add command to output
                 terminalOutput.innerHTML += `<div>$ ${command}</div>`;
                 
-                // Process command
-                if (command === 'ls') {
-                    terminalOutput.innerHTML += '<div style="color: #27c93f">You found the easter egg! 🎉</div>';
-                } else if (command === 'clear') {
-                    terminalOutput.innerHTML = '';
-                } else if (command !== '') {
-                    terminalOutput.innerHTML += '<div style="color: #ff5f56">command not found: ' + command + '</div>';
-                }
+                // Process command using the new function
+                handleCommand(command);
                 
                 // Clear input
                 terminalInput.value = '';
