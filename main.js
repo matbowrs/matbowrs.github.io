@@ -85,6 +85,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.back-button').addEventListener('click', goHome);
     document.querySelector('.home-link').addEventListener('click', goHome);
 
+    // Add an array of jokes
+    const jokes = [
+        "Why do programmers prefer dark mode? Because light attracts bugs!",
+        "Why do Java developers wear glasses? Because they don't see sharp!",
+        "How many programmers does it take to change a light bulb? None, that's a hardware problem!",
+        "Why was the developer unhappy at their job? They wanted arrays!",
+    ];
+
     // Function to handle terminal commands
     function handleCommand(command) {
         const terminalOutput = document.querySelector('.terminal-output');
@@ -93,7 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 terminalOutput.innerHTML += '<div style="color: #27c93f">You found the easter egg! 🎉</div>';
                 break;
             case 'help':
-                terminalOutput.innerHTML += '<div>Available commands: ls, help, echo [message]</div>';
+                terminalOutput.innerHTML += '<div>Available commands: ls, help, echo [message], joke</div>';
+                break;
+            case 'joke':
+                const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+                terminalOutput.innerHTML += `<div>${randomJoke}</div>`;
                 break;
             default:
                 if (command.startsWith('echo ')) {
