@@ -75,7 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add click handlers to tabs
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
-            if (!tab.classList.contains('terminal-btn')) {
+            // Skip terminal button and resume link
+            if (!tab.classList.contains('terminal-btn') && !tab.hasAttribute('href')) {
                 switchToContent(tab);
             }
         });
