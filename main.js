@@ -43,8 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Tab Switching
     const tabs = document.querySelectorAll('.tab');
     const tabContents = document.querySelectorAll('.tab-content');
-    const tabGroup = document.getElementById('tabGroup');
-    const breadcrumb = document.getElementById('breadcrumb');
 
     function switchToContent(targetTab) {
         const tabId = targetTab.getAttribute('data-tab');
@@ -53,23 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
         tabContents.forEach(content => content.classList.remove('active'));
         document.getElementById(tabId).classList.add('active');
         
-        // Hide tabs, show breadcrumb
-        tabGroup.classList.add('hidden');
-        breadcrumb.classList.remove('hidden');
-        
-        // Update current page in breadcrumb
-        breadcrumb.querySelector('.current-page').textContent = targetTab.textContent;
-    }
-
-    function goHome() {
-        // Show tabs, hide breadcrumb
-        tabGroup.classList.remove('hidden');
-        breadcrumb.classList.add('hidden');
-        
-        // Go to first tab content
-        const firstTabId = tabs[0].getAttribute('data-tab');
-        tabContents.forEach(content => content.classList.remove('active'));
-        document.getElementById(firstTabId).classList.add('active');
+        // Update active tab state
+        tabs.forEach(tab => tab.classList.remove('active'));
+        targetTab.classList.add('active');
     }
 
     // Add click handlers to tabs
@@ -82,9 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Add home navigation handlers
-    document.querySelector('.back-button').addEventListener('click', goHome);
-    document.querySelector('.home-link').addEventListener('click', goHome);
+    // Show home content initially
+    document.getElementById('home').classList.add('active');
+    tabs[0].classList.add('active');
 
     // Add an array of jokes
     const jokes = [
@@ -170,8 +154,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-    // Show first tab content initially
-    const firstTabId = tabs[0].getAttribute('data-tab');
-    document.getElementById(firstTabId).classList.add('active');
 });

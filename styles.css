@@ -60,9 +60,8 @@ p {
     gap: 1rem;
     transition: all 0.3s ease;
     font-size: 0.9rem;
-    position: absolute;
+    position: relative;
     width: 100%;
-    transform-origin: left;
 }
 
 .tab {
@@ -74,49 +73,20 @@ p {
     color: var(--text-color);
     font-size: 0.9rem;
     transition: color 0.3s;
-    border-radius: 4px;
     position: relative;
     -webkit-tap-highlight-color: transparent;
     outline: none;
     user-select: none;
 }
 
-/* Remove ALL hover effects */
 .tab:hover {
-    background-color: transparent !important;
+    background: none;
 }
 
-/* Remove focus styles */
-.tab:focus {
-    background-color: transparent;
-    outline: none;
+.tab.active {
+    color: var(--accent-color);
 }
 
-/* Remove active button press effect */
-.tab:active {
-    background-color: transparent;
-}
-
-/* Animated underline that uses text color */
-.tab::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    right: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--text-color); /* Changed to use text color instead of accent color */
-    transition: width 0.2s ease;
-    transform-origin: right;
-}
-
-.tab:hover::after {
-    width: 100%;
-    left: 0;
-    right: auto;
-}
-
-/* Active tab styling */
 .tab.active::after {
     content: '';
     position: absolute;
@@ -124,7 +94,7 @@ p {
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: var(--text-color); /* Changed to use text color */
+    background-color: var(--accent-color);
 }
 
 .breadcrumb {
@@ -733,5 +703,53 @@ a:hover {
     h2 {
         font-size: 1.4rem;
         margin-bottom: 1.5rem;
+    }
+}
+
+/* FAQ Section */
+.faq-section {
+    margin: 3rem 0;
+}
+
+.faq-item {
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.faq-item:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.faq-item h3 {
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.faq-item p {
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .faq-item:hover {
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+/* Media Queries */
+@media (max-width: 600px) {
+    .faq-item {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .faq-item h3 {
+        font-size: 1.1rem;
     }
 }
